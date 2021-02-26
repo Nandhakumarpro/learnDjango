@@ -16,3 +16,6 @@ urlpatterns += [
     path('MyUserView', views.MyUserView.as_view(), name="my-user-view"),
     path("MyUsers", api_views.MyView.as_view() , name="users-list"),
 ]
+
+
+#{"source_lang": {"source_lang": "en"}, "target_langs": [{"target_lang": "ta"}, {"target_lang": "de"}], "project_name": "demo3", "user": 1}
