@@ -51,3 +51,6 @@ class UserForm2 (forms.Form):
 
     class Meta:
         fields = "__all__"
+
+class ProjectForm(forms.Form):
+    pass
