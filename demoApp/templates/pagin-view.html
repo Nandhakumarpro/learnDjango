@@ -1,0 +1,9 @@
+{% for result in results %}
+	{{ result.project_name}}-->>{{result.project_detail}}<br>
+{% endfor %}
+{% if next %}
+	<a href='{{next}}'>next</a>
+{% endif %}
+{% if previous %}
+	<a href='{{previous}}'>previous</a>
+{% endif %}

@@ -6,7 +6,9 @@ from .models import User,Project, SourceLang, TargetLang
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets
+from rest_framework.pagination import PageNumberPagination 
 from django.http import JsonResponse
+
 
 class MyView(APIView):
     def get(self,request):
@@ -21,6 +23,7 @@ class MyView(APIView):
             return Response( serializer.data, status = 201)
 
 class ProjectList(viewsets.ModelViewSet):
+    pagination_class = PageNumberPagination 
     serializer_class = ProjectListSerializer
     queryset = Project.objects.all()
 
