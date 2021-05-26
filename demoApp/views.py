@@ -54,7 +54,8 @@ class ProjectPaginView(View):
 
     def get_page_url(self, link):
         page_no = None
-        if link:
+        if link:            
+            link = re.match( f'({self.URL}%(\?page=.)?)', link).groups()[0]
             page_no = re.sub(self.URL%'(\?page=)?', '', link)
             if page_no:
                 page_no = int(page_no)
