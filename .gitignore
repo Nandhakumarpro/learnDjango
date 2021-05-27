@@ -1,0 +1,3 @@
+*.pyc
+Solus-4.2-Budgie.iso
+#find . -name "*.pyc" -exec git rm -f "{}" \;

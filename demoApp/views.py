@@ -5,6 +5,7 @@ from django.views.generic import CreateView
 from django.views import View
 from django.http import HttpResponse
 import requests, re 
+from django.contrib.auth.mixins import LoginRequiredMixin 
 # Create your views here.
 
 def successfully_user_created(request):
@@ -42,7 +43,10 @@ class MyUserView(View):
             return HttpResponse("<h3>successfully_user_created</h3>")
         return render(request,"create-user.html", {"form":form} )
 
-class ProjectPaginView(View):
+class ProjectPaginView(LoginRequiredMixin, View):
+    login_url = "/admin/login"
+    redirect_field_name = "next"
+
     URL = 'http://127.0.0.1:8000/demoapp/projects/list/%s'
     def get(self, request, page_no):
         res = requests.get(self.URL%f'?page={page_no}') 
