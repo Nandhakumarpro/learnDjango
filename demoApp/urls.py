@@ -15,7 +15,8 @@ urlpatterns += [
     path("createuserfunc", views.createuserFunc, name="create-user-func"),
     path('MyUserView', views.MyUserView.as_view(), name="my-user-view"),
     path("MyUsers", api_views.MyView.as_view() , name="users-list"),
-    path("project_pagin/<int:page_no>", views.ProjectPaginView.as_view(), name="project-pagin-view")
+    path("project_pagin/<int:page_no>", views.ProjectPaginView.as_view(), name="project-pagin-view"),
+    path("show_time", views.showtime, name="show-time")
 ]
 
 

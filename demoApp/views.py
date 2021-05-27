@@ -66,5 +66,6 @@ class ProjectPaginView(LoginRequiredMixin, View):
             else: page_no = 1
         return page_no if not page_no else reverse ('demoapp:project-pagin-view', kwargs={'page_no':page_no})
 
-
-
+def showtime(request):
+    # raise Exception('Django middleware')
+    return HttpResponse("<h1>exception middleware not reached</h1>")
