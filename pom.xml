@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.ailaysa</groupId>
+	<artifactId>translate</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ailaysa-translate</name>
+<!--	<packaging>war</packaging>-->
+	<description>The CAT tool based on Okapi Framework</description>
+
+	<properties>
+		<java.version>11</java.version>
+		<okapi.version>0.38</okapi.version>
+	</properties>
+
+
+	<dependencies>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-web</artifactId>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+
+				<exclusion>
+					<groupId>org.codehaus.woodstox</groupId>
+					<artifactId>stax2-api</artifactId><!-- 4.1 conflicts with 3.1.4 from apache cxf-spring-boot-starter-jaxws-->
+				</exclusion>
+
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j</artifactId>
+			<version>1.3.8.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<version>1.5.1.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.5.1.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.10</version>
+		</dependency>
+
+<!--		okapi-->
+
+		<dependency>
+			<groupId>net.sf.okapi</groupId>
+			<artifactId>okapi-core</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-html</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>net.sf.okapi.steps</groupId>-->
+<!--			<artifactId>okapi-step-wordcount</artifactId>-->
+<!--			<version>1.40.0</version>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>net.sf.okapi.lib</groupId>
+			<artifactId>okapi-lib-segmentation</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.tm</groupId>
+			<artifactId>okapi-tm-pensieve</artifactId>
+			<version>0.36</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.okapi.filters/okapi-filter-json -->
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-json</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-table</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-openoffice</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-openxml</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-properties</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>net.sf.okapi.filters</groupId>-->
+<!--			<artifactId>okapi-filter-fontmappings</artifactId>-->
+<!--			<version>1.40.0</version>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-po</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-its</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-idml</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-markdown</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-rtf</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-sdlpackage</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-xliff2</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.filters</groupId>
+			<artifactId>okapi-filter-ts</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.steps</groupId>
+			<artifactId>okapi-step-wordcount</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.steps</groupId>
+			<artifactId>okapi-step-tradosutils</artifactId>
+			<version>0.37</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.okapi.steps</groupId>
+			<artifactId>okapi-step-common</artifactId>
+			<version>1.40.0</version>
+<!--			<scope>test</scope>-->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.okapi.steps/okapi-step-common -->
+
+
+
+		<!-- https://mvnrepository.com/artifact/net.sf.okapi.steps/okapi-step-leveraging -->
+		<dependency>
+			<groupId>net.sf.okapi.steps</groupId>
+			<artifactId>okapi-step-leveraging</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.okapi.steps/okapi-step-repetitionanalysis -->
+		<dependency>
+			<groupId>net.sf.okapi.steps</groupId>
+			<artifactId>okapi-step-repetitionanalysis</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.sf.okapi.steps/okapi-step-scopingreport -->
+		<dependency>
+			<groupId>net.sf.okapi.steps</groupId>
+			<artifactId>okapi-step-scopingreport</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.okapi.steps/okapi-step-segmentation -->
+		<dependency>
+			<groupId>net.sf.okapi.steps</groupId>
+			<artifactId>okapi-step-segmentation</artifactId>
+			<version>1.40.0</version>
+<!--			<scope>test</scope>-->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.okapi.connectors/okapi-connector-pensieve -->
+		<dependency>
+			<groupId>net.sf.okapi.connectors</groupId>
+			<artifactId>okapi-connector-pensieve</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+
+
+		<!--		<dependency>-->
+<!--			<groupId>ldapjdk</groupId>-->
+<!--			<artifactId>ldapjdk</artifactId>-->
+<!--			<scope>system</scope>-->
+<!--			<version>1.0</version>-->
+<!--			<systemPath>/home/langscape/Documents/okapi/installation/lib/okapi-lib-1.41.0.jar</systemPath>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>ldapjdk</groupId>-->
+<!--			<artifactId>ldapjdk</artifactId>-->
+<!--			<scope>system</scope>-->
+<!--			<version>1.0</version>-->
+<!--			<systemPath>/home/langscape/Documents/okapi/installation/lib/okapi-lib-ui-1.41.0.jar</systemPath>-->
+<!--		</dependency>-->
+
+<!--		<dubug >-->
+
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.12.1</version>
+<!--			<scope>test</scope>-->
+		</dependency>
+
+		<dependency>
+			<groupId>com.twelvemonkeys.common</groupId>
+			<artifactId>common-io</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		<!-- Thanks for using https://jar-download.com -->
+
+		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.lucene</groupId>-->
+<!--			<artifactId>lucene-core</artifactId>-->
+<!--			<version>8.7.0</version>-->
+<!--		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.lucene</groupId>-->
+<!--			<artifactId>lucene-core</artifactId>-->
+<!--			<version>7.6.0</version>-->
+<!--		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/com.ibm.icu/icu4j-localespi -->
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j-localespi</artifactId>
+			<version>68.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.htmlparser.jericho/jericho-html -->
+		<dependency>
+			<groupId>net.htmlparser.jericho</groupId>
+			<artifactId>jericho-html</artifactId>
+			<version>3.4</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/com.ibm.icu/icu4j -->
+
+		<!--		<debug></debug>-->
+		<!-- https://mvnrepository.com/artifact/com.ibm.icu/com.springsource.com.ibm.icu -->
+
+
+	</dependencies>
+
+	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<systemPropertyVariables>
+						<org.springframework.boot.logging.LoggingSystem>
+							org.springframework.boot.logging.log4j2.Log4J2LoggingSystem
+						</org.springframework.boot.logging.LoggingSystem>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.ailaysa.translate.v1.TranslateApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.4.5</version>
+			</plugin>
+
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>2.0.3</version>
+				<configuration>
+					<appName>spring-boot-rest-test</appName>
+					<includeTarget>false</includeTarget>
+					<includes>
+						<include>${project.build.directory}/${project.build.finalName}.jar</include>
+					</includes>
+					<jdkVersion>${java.version}</jdkVersion>
+					<processTypes>
+						<web>java $JAVA_OPTS -jar ${project.build.directory}/${project.build.finalName}.jar</web>
+					</processTypes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
